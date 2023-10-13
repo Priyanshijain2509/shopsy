@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/help', to: 'static_pages#help'
   get '/signup', to: 'users#new'
-  get '/items', to: 'items#index'
+  get '/products', to: 'products#index'
+  post '/new_user_product', to: 'products#new'
 
+  resources :users do
+    resources :products
+  end
 
-  resources :items
   root 'static_pages#index'
 end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable, :confirmable
 
-  has_many :users
+  has_many :products, dependent: :destroy
   before_save {email.downcase!}
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 20 }
