@@ -1,0 +1,10 @@
+<% product ||= @product %>
+<% order ||= @order %>
+<%= form_with(model: product.orders.build(status: 'Cancelled',
+    buyer: current_user, seller: product.user), 
+    url: user_product_order_path(current_user.id, product, order),
+    method: :patch, remote: true) do |f| %>
+  <%= f.hidden_field :status %>
+  <%= f.submit 'Cancel', class: 'btn btn-danger',
+        id: "button_product_#{product.id}" %>
+<% end %>

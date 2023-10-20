@@ -1,0 +1,37 @@
+<h1>Welcome to Your Dashboard</h1>
+
+<h2>Your Orders</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Buyer Name</th>
+        <th>Buyer Address</th>
+        <th>Order Id</th>
+        <th>Ordered At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.product_name %></td>
+          <td><%= product.price %></td>
+          <td></td> 
+        </tr>
+        <% product.orders.where(status: 'Ordered').each do |order| %>
+          <tr>
+            <td></td> 
+            <td></td>
+            <td><%= order.org_buyer.first_name %></td>
+            <td><%= order.org_buyer.address %></td>
+            <td><%= order.id %></td>
+            <td><%= order.created_at %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= paginate @products %>

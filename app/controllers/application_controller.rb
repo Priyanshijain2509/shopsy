@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   protected
 # to permit additional params other than provided by devise gem
   def configure_permitted_parameters
@@ -32,7 +31,4 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def after_sign_in_path_for(resource)
-    '/products'
-  end
 end
