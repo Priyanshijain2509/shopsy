@@ -53,10 +53,6 @@ class ProductsController < ApplicationController
     end
   end
   
-  def seller_dashboard
-    @products = current_user.products.page params[:page]
-  end
-
   private
 
   def set_product

@@ -51,25 +51,23 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end  
   
-
-
-  # test 'should create a new user' do
-  #   assert_difference('User.count') do
-  #     post user_registration_path, params: { user: { 
-  #       first_name: @user.first_name, 
-  #       last_name: @user.last_name,
-  #       email: @user.email,
-  #       password: 'password',
-  #       password_confirmation: 'password',
-  #       role: @user.role,
-  #       contact_number: @user.contact_number, 
-  #       address: @user.address,
-  #       state: @user.state, 
-  #       pin_code: @user.pin_code
-  #       } }
-  #   end
-  #   assert_redirected_to root_path
-  # end
+  test 'should create a new user' do
+    assert_difference('User.count') do
+      post user_registration_path, params: { user: { 
+        first_name: 'Raman', 
+        last_name: 'Mishra',
+        email: 'raman@co.in',
+        password: 'password',
+        password_confirmation: 'password',
+        role: 'seller',
+        contact_number: '9634511021', 
+        address: 'Kota',
+        state: 'Rajasthan', 
+        pin_code: 321450
+        } }
+    end
+    assert_redirected_to root_path
+  end
   
   test 'should not create a user with invalid data' do
     assert_no_difference('User.count') do

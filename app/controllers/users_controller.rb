@@ -31,6 +31,14 @@ class UsersController < ApplicationController
     @users = User.page params[:page]
   end
   
+  def my_order
+    @orders = current_user.orders.page params[:page]
+  end
+
+  def seller_dashboard
+    @products = current_user.products.page params[:page]
+  end
+
   private
 
   def user_params
