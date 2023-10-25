@@ -1,15 +1,43 @@
-one:
-  first_name: MyString
-  last_name: MyString
-  contact_number: 1
-  address: MyString
-  state: MyString
-  pin_code: 1
+michael:
+  first_name: 'Michael'
+  last_name: 'Example'
+  contact_number: '9876543210'
+  address: 'Jaipur'
+  state: 'Rajasthan'
+  pin_code: 302019
+  email: 'michael@example.com'
+  role: 'seller'
+  confirmed_at: '<%= Time.zone.now %>'
 
-two:
-  first_name: MyString
-  last_name: MyString
-  contact_number: 1
-  address: MyString
-  state: MyString
-  pin_code: 1
+archer:
+  first_name: 'Sterling'
+  last_name: 'Archer'
+  contact_number: '9876543240'
+  address: 'udaipur'
+  state: 'Rajasthan'
+  pin_code: 320145
+  email: duchess@example.gov
+  role: 'buyer'
+  confirmed_at: '<%= Time.zone.now %>'
+
+johnson:
+  first_name: 'Johnson'
+  last_name: 'Doe'
+  contact_number: '8631209451' 
+  address: 'Delhi'
+  state: 'Haryana'
+  pin_code: 110001
+  email: 'johnson@doe.com'
+  role: 'buyer'
+  confirmed_at: '<%= Time.zone.now %>'
+
+smith:
+  first_name: 'Smith'
+  last_name: 'Wesson'
+  contact_number: '7878290941'
+  address: 'Mumbai'
+  state: 'Maharastra'
+  pin_code: 400001
+  email: 'smith@wesson.com'
+  role: 'seller'
+  confirmed_at: '<%= Time.zone.now %>'

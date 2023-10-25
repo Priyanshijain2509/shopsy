@@ -1,13 +1,13 @@
-one:
-  product_name: MyString
-  product_type: MyString
-  description: MyString
-  price: 1
-  user: one
+watch:
+  product_name: 'watch'
+  product_type: 'Electronic'
+  description: 'A watch for men and women.'
+  price: 599
+  user: michael
 
-two:
-  product_name: MyString
-  product_type: MyString
-  description: MyString
-  price: 1
-  user: two
+phone:
+  product_name: 'iPhone XR'
+  product_type: 'Electronic'
+  description: 'The latest iPhone from Apple.'
+  price: 74999
+  user: smith
