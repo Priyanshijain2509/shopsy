@@ -1,0 +1,46 @@
+<div class='back-button'>
+  <%= link_to 'Back', :back, class: 'btn btn-info' %>
+</div>
+<h1>Welcome to Your Dashboard</h1>
+<h2>Your Orders</h2>
+<% if @products.empty? %>
+  <p>No products posted yet.</p>
+<% else %>
+  <%= paginate @products %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Buyer Name</th>
+          <th>Buyer Address</th>
+          <th>Order Id</th>
+          <th>Ordered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.product_name %></td>
+            <td><%= product.price %><%= ' $ ' %></td>
+            <td><%= product.quantity %></td>
+            <td></td> 
+          </tr>
+          <% product.orders.where(status: 'Placed').each do |order| %>
+            <tr>
+              <td></td> 
+              <td></td>
+              <td></td>
+              <td><%= order.org_buyer.first_name %></td>
+              <td><%= order.org_buyer.address %></td>
+              <td><%= order.id %></td>
+              <td><%= order.created_at %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

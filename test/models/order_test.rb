@@ -29,8 +29,8 @@ class OrderTest < ActiveSupport::TestCase
     assert_not @order.valid?
   end
 
-  test 'status should only allow "Ordered" or "Cancelled"' do
-    valid_statuses = %w[Ordered Cancelled]
+  test 'status should only allow "Ordered" or "Cancelled" ' do
+    valid_statuses = %w[Placed Cancelled ]
     valid_statuses.each do |status|
       @order.status = status
       assert @order.valid?, "#{status.inspect} should be a valid status"

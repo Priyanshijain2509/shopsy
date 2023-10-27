@@ -36,6 +36,7 @@ states= ['Assam', 'Bihar', 'Goa', 'Gujarat', 'Haryana', 'Karnataka', 'Kerla',
 end
 
 product_types = ['Clothes', 'Electronic', 'Health Care', 'Home Decor', 'Grocery']
+product_status = ['Active', 'Archived']
 20.times do |n|
   email= "seller-#{n+1}@co.in"
   user = User.create!(
@@ -57,7 +58,9 @@ product_types = ['Clothes', 'Electronic', 'Health Care', 'Home Decor', 'Grocery'
       product_type: product_types.sample,
       description: Faker::Lorem.paragraph,
       price: Faker::Commerce.price(range: 10.0..1000.0, as_string: false),
-      user: user,
+      quantity: rand(1..100),
+      product_status: product_status.sample,
+      user: user
     )
   end
 end

@@ -7,8 +7,10 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def index
-    @users = User.page params[:page]
+  def index; end
+  
+  def all_product
+    @users = User.where(role: 'seller').page params[:page]
   end
 
   def create
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
     @orders = current_user.orders.page params[:page]
   end
 
-  def seller_dashboard
+  def order_list
     @products = current_user.products.page params[:page]
   end
 

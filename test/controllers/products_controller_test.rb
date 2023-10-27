@@ -47,7 +47,9 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
         product_name: 'Wall watch',
         product_type: 'Electronic',
         description: 'A Wall watch',
-        price: 1999
+        price: 1999,
+        quantity: 10,
+        product_status: 'Active'
       } }
     end
   end

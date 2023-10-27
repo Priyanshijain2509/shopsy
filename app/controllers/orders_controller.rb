@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @user_id = current_user.id
     @product = Product.find(params[:product_id])
     @order = @product.orders.build(order_params)
     if @order.save
@@ -21,7 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @user_id = current_user.id
     @product = Product.find(params[:product_id])
     @order = Order.find(params[:id])
     if @order.update(status: 'Cancelled')

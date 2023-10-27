@@ -9,5 +9,6 @@ class Product < ApplicationRecord
   validates :price, presence: true , numericality: { greater_than: 0 }
   validates :product_name, presence: true, length: { minimum: 3 }
   validates :description, presence: true, length: { minimum: 3 }
-
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validates :product_status, presence: true, inclusion: { in: ['Active', 'Archived'] }
 end

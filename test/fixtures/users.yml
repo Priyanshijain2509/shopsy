@@ -20,6 +20,16 @@ archer:
   role: 'buyer'
   confirmed_at: '<%= Time.zone.now %>'
 
+joy:
+  first_name: 'joy'
+  last_name: 'Archer'
+  contact_number: '9876523240'
+  address: 'udaipur'
+  state: 'Rajasthan'
+  pin_code: 320145
+  email: jpy@example.gov
+  role: 'buyer'
+  
 johnson:
   first_name: 'Johnson'
   last_name: 'Doe'

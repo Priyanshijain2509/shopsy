@@ -1,29 +1,44 @@
 <h1>Orders</h1>
 <p id="notice"><%= notice %></p>
-
-<div class='table-responsive'>
-  <table class='table table-striped'>
-    <thead>
-      <tr>
-        <th>Product name</th>
-        <th>Product type</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Ordered At</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.product.product_name %></td>
-          <td><%= order.product.product_type %></td>
-          <td><%= order.product.description %></td>
-          <td><%= order.product.price %></td>
-          <td><%= order.created_at %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class='back-button'>
+  <%= link_to 'Back', :back, class: 'btn btn-info' %>
 </div>
-<%= paginate @orders %>
+<% if @orders.empty? %>
+  <h3>No orders yet.</h3>
+<% else %>
+  <%= paginate @orders %>
+
+  <div class='table-responsive'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Product name</th>
+          <th>Product type</th>
+          <th>Price</th>
+          <th>Order Id</th>
+          <th>Ordered At</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.product.product_name %></td>
+            <td><%= order.product.product_type %></td>
+            <td><%= order.product.price %><%= ' $ ' %></td>
+            <td><%= order.id %></td>
+            <td><%= order.created_at %></td>
+            <td>
+              <% if order.status == 'Placed' %>
+                <%= content_tag :span, order.status, class: 'btn btn-success' %>
+              <% else %>
+                <%= content_tag :span, order.status, class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

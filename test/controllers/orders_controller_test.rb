@@ -34,6 +34,12 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     sign_in user
     patch user_product_order_path(user, product, @order, format: :js)
     assert_response :success
+    assert_equal 'Order cancelled', flash[:success]
+    assert_equal "You'll recieve a order cancellation mail!", flash[:info]
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    last_email = ActionMailer::Base.deliveries.last
+    assert_equal [user.email], last_email.to
+    assert_equal 'Order Cancellation', last_email.subject
   end
 
 end

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :orders, class_name: 'Order', foreign_key: 'buyer'
   has_many :orders_as_seller, class_name: 'Order', foreign_key: 'seller'
 
-  paginates_per 10
+  paginates_per 5
   
   VALID_CONTACTNUMBER_REGEX = /\A[6-9]\d{9}\z/
   validates :first_name, presence: true, length: { minimum: 3, maximum: 30 }

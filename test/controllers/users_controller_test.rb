@@ -6,6 +6,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
     @other_user = users(:archer)
+    @devise_user = users(:joy)
+    login_user = User.create!(
+      first_name: 'Michael',
+      last_name: 'Example',
+      contact_number: '8076543210',
+      address: 'Jaipur',
+      state: 'Rajasthan',
+      pin_code: 302019,
+      email: 'michael1@example.com',
+      password: 'password', 
+      role: 'seller',
+      confirmed_at: Time.zone.now
+    )
   end
     
   test 'should get new registration page' do
@@ -82,4 +95,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
+  test "user should be confirmed upon confirmation" do
+    @user.confirm
+    assert @user.confirmed? 
+  end
+
+  test "user should not be confirmed without confirmation" do
+    assert_not @devise_user.confirmed? 
+  end
 end

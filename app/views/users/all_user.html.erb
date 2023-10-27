@@ -1,6 +1,9 @@
 <% provide(:title, 'All Users ||') %>
-
+<div class='back-button'>
+  <%= link_to 'Back', :back, class: 'btn btn-info' %>
+</div>
 <h1>All Users</h1>
+<%= paginate @users %>
 <div class='table-responsive'>
   <table class='table table-striped'>
     <thead>
@@ -26,4 +29,4 @@
     </tbody>
   </table>
 </div>
-<%= paginate @users %>
+

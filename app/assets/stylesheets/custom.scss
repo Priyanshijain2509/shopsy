@@ -8,7 +8,7 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 body {
-	padding-top: 60px;
+	padding-top: 30px;
 }
 
 section {
@@ -28,7 +28,7 @@ textarea {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	line-height: 1;
+	line-height: 1.5;
 }
 
 h1 {
@@ -39,7 +39,6 @@ h1 {
 }
 
 h2 {
-	font-size: 1.5em;
 	letter-spacing: -1px;
 	margin-bottom: 30px;
 	text-align: center;
@@ -55,45 +54,53 @@ p {
 /* header */
 header {
 	float: left;
-	font-size: 1em;
+	font-size: 1.5em;
 	color: #fff;
 	text-transform: uppercase;
 	padding-top: 3px;
-
+  
 	&:hover {
 		color: #ff0b20;
 		text-decoration: none;
 	}
 }
 
+.header > span{
+  display: inline;
+}
+
 /* footer */
 footer {
-	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid $gray-medium-light;
-	color: $gray-light;
-
-	a {
-		color: $gray;
-
-		&:hover {
-			color: $gray-darker;
-		}
-	}
-
-	small {
-		float: left;
-	}
-
-	ul {
-		float: right;
-		list-style: none;
-
-		li {
-			float: left;
-			margin: 20px;
-		}
-	}
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+  text-align: center; 
+  z-index: 1000; 
+}
+footer a {
+  color: $gray;
+  text-decoration: none; 
+  &:hover {
+    color: $gray-darker;
+  }
+}
+footer small {
+  display: block;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+footer ul li {
+  display: inline;
+  margin: 0 20px; 
 }
 
 
@@ -113,14 +120,11 @@ body {
 	font-size: 11px; }
   
   a {
-	color: #fff; }
-  
-  a:visited {
-	color: #fff; }
+	color: #201e1e; }
   
   a:hover {
-	color: #ff0f0f;
-	background-color: #000; }
+	color: #ff0000;
+ }
   
   th {
 	padding-bottom: 5px; }
@@ -132,6 +136,9 @@ body {
   div.actions {
 	margin-bottom: 10px; }
   
+.field > label{
+  text-align: left;
+}
   #notice {
 	color: green; }
   
@@ -178,4 +185,79 @@ body {
   border: 1px solid #ccc;
   margin: 2px;
   padding: 5px 10px;
+}
+
+.row{
+  border-radius: 20px;
+  width: 60rem;
+  height: auto;
+  align-items: center;
+}
+.a-container{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.action{
+  align-items: center;
+}
+
+#buttons{
+  color: #fff;
+  margin: 20px;
+}
+
+.shopsy{
+  color: #fff;    
+}
+
+.add-container{
+  padding: 10px 70px 20px;
+}
+
+.remember-me-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content .nav {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.header-content .nav li {
+  list-style: none;
+  margin-right: 10px; 
+}
+
+.header-content .dropdown {
+  position: relative;
+}
+
+.header-content .dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+
+.header-content .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.back-button {
+  text-align: right;
 }

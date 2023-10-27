@@ -2,7 +2,7 @@ one:
   org_buyer: archer
   org_seller: michael
   product: watch
-  status: 'Ordered'
+  status: 'Placed'
 
 two:
   org_buyer: johnson

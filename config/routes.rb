@@ -6,11 +6,10 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/signup', to: 'users#new'
   get '/products', to: 'products#index'
-  # get 'seller_dashboard', to: 'products#seller_dashboard', as: 'seller_dashboard'
   get 'all_user', to: 'users#all_user', as: 'all_users'
-  get 'all_product', to: 'products#all_product', as: 'all_products'
-  get '/seller_dashboard', to: 'users#seller_dashboard'
+  get '/order_list', to: 'users#order_list'
   get '/my_orders', to: 'users#my_order'
+  get '/all_product', to: 'users#all_product'
 
   resources :users do
     resources :products do
