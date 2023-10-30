@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  
+
   def setup
     @product = products(:watch)
   end
@@ -12,11 +14,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     sign_out user
     assert_no_difference 'Product.count' do
       post user_products_path(user), params: { product: {
-        product_name: "watch", 
-        product_type: "Electronic",
-        description: "A wrist watch",
+        product_name: 'watch',
+        product_type: 'Electronic',
+        description: 'A wrist watch',
         price: 5999
-        } }
+      } }
     end
     assert_redirected_to new_user_session_path
   end
@@ -32,7 +34,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should redirect destroy for wrong micropost' do
     user = users(:michael)
-    product = products(:phone)   
+    product = products(:phone)
     assert_no_difference 'Product.count' do
       delete user_product_path(user, product)
     end
@@ -48,10 +50,8 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
         product_type: 'Electronic',
         description: 'A Wall watch',
         price: 1999,
-        quantity: 10,
         product_status: 'Active'
       } }
     end
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
@@ -6,6 +8,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
     sign_in users(:michael)
   end
+
   test 'should get home' do
     get home_path
     assert_response :success
@@ -25,5 +28,4 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get contact_path
     assert_response :success
   end
-  
 end

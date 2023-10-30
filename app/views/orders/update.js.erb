@@ -1,1 +1,2 @@
-$("#button_product_<%= @product.id %>").html("<%= escape_javascript(render('orders/order', order: @order)) %>");
+$("#button_product_<%= @product.id %>").html(
+  "<%= escape_javascript(render('orders/order', order: @order)) %>");

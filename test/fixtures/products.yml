@@ -3,7 +3,6 @@ watch:
   product_type: 'Electronic'
   description: 'A watch for men and women.'
   price: 599
-  quantity: 21
   product_status: 'Active'
   user: michael
 
@@ -12,6 +11,5 @@ phone:
   product_type: 'Electronic'
   description: 'The latest iPhone from Apple.'
   price: 74999
-  quantity: 3
   product_status: 'Archived'
   user: smith

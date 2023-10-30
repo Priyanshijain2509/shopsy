@@ -13,7 +13,6 @@
         <tr>
           <th>Product</th>
           <th>Price</th>
-          <th>Quantity</th>
           <th>Buyer Name</th>
           <th>Buyer Address</th>
           <th>Order Id</th>
@@ -25,7 +24,6 @@
           <tr>
             <td><%= product.product_name %></td>
             <td><%= product.price %><%= ' $ ' %></td>
-            <td><%= product.quantity %></td>
             <td></td> 
           </tr>
           <% product.orders.where(status: 'Placed').each do |order| %>

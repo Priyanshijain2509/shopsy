@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
@@ -23,23 +25,23 @@ class ProductTest < ActiveSupport::TestCase
     @product.description = ''
     assert_not @product.valid?
   end
-  
+
   test 'price should be present' do
     @product.price = ''
     assert_not @product.valid?
   end
 
-  test "product_name should not be too small" do
-    @product.product_name = "a" * 2
+  test 'product_name should not be too small' do
+    @product.product_name = 'a' * 2
     assert_not @product.valid?
   end
 
-  test "description should not be too small" do
-    @product.description = "a" * 2
+  test 'description should not be too small' do
+    @product.description = 'a' * 2
     assert_not @product.valid?
   end
 
-  test "user id should be present" do
+  test 'user id should be present' do
     @product.user_id = nil
     assert_not @product.valid?
   end

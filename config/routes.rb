@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
   get '/home', to: 'static_pages#home'
@@ -6,15 +8,15 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/signup', to: 'users#new'
   get '/products', to: 'products#index'
-  get 'all_user', to: 'users#all_user', as: 'all_users'
-  get '/order_list', to: 'users#order_list'
-  get '/my_orders', to: 'users#my_order'
-  get '/all_product', to: 'users#all_product'
+  get 'all_user', to: 'users#index'
+  get '/all_product', to: 'products#show'
+  get '/order_list', to: 'orders#index'
+  get '/my_orders', to: 'orders#show'
 
   resources :users do
     resources :products do
       resources :orders, only: [:create, :update]
-    end   
+    end
   end
   root 'static_pages#index'
 end

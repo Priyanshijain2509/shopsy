@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
@@ -19,7 +21,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_not @order.valid?
   end
 
-  test "product id should be present" do
+  test 'product id should be present' do
     @order.product_id = nil
     assert_not @order.valid?
   end
@@ -29,8 +31,8 @@ class OrderTest < ActiveSupport::TestCase
     assert_not @order.valid?
   end
 
-  test 'status should only allow "Ordered" or "Cancelled" ' do
-    valid_statuses = %w[Placed Cancelled ]
+  test 'status should only allow "Placed" or "Cancelled" ' do
+    valid_statuses = %w[Placed Cancelled]
     valid_statuses.each do |status|
       @order.status = status
       assert @order.valid?, "#{status.inspect} should be a valid status"
@@ -42,5 +44,4 @@ class OrderTest < ActiveSupport::TestCase
       assert_not @order.valid?, "#{status.inspect} should be an invalid status"
     end
   end
-
 end

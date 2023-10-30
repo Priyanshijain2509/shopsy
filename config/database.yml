@@ -20,14 +20,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: priyanshi
-  password: <%= ENV['shopsy_app_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['SHOPSY_APP_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
   database: shopsy_app_development
-  username: priyanshi
-  password: Priyanshi1@1
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['SHOPSY_APP_DATABASE_PASSWORD'] %>
 
 
   # The specified database role being used to connect to postgres.

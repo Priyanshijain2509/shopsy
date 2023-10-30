@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
@@ -41,5 +43,4 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_equal [user.email], last_email.to
     assert_equal 'Order Cancellation', last_email.subject
   end
-
 end

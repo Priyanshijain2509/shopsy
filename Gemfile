@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -26,8 +28,8 @@ gem 'rails-ujs'
 # for implementing bootstrap
 gem 'bootstrap-sass', '3.4.1'
 # Use kaminari used to manage pagination
-gem 'kaminari'
 gem 'faker'
+gem 'kaminari'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -53,10 +55,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-  gem 'minitest-reporters'
   gem 'guard','2.18.0'
   gem 'guard-minitest','2.4.6'
+  gem 'minitest-reporters'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
