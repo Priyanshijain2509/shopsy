@@ -1,0 +1,11 @@
+one:
+  buyer: 1
+  seller: 1
+  product: one
+  status: MyString
+
+two:
+  buyer: 1
+  seller: 1
+  product: two
+  status: MyString

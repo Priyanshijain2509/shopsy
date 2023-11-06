@@ -1,0 +1,12 @@
+class CreateOrders < ActiveRecord::Migration[6.0]
+  def change
+    create_table :orders do |t|
+      t.integer :buyer
+      t.integer :seller
+      t.references :product, null: false, foreign_key: true
+      t.string :status
+
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,13 @@
+one:
+  product_name: MyString
+  product_type: MyString
+  description: MyString
+  price: 1
+  user: one
+
+two:
+  product_name: MyString
+  product_type: MyString
+  description: MyString
+  price: 1
+  user: two

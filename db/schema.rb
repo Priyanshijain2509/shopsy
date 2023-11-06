@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2023_10_13_080503) do
+=======
+ActiveRecord::Schema.define(version: 2023_10_19_080151) do
+>>>>>>> seller-functionality
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +30,31 @@ ActiveRecord::Schema.define(version: 2023_10_13_080503) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "buyer"
+    t.integer "seller"
+    t.bigint "product_id", null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_name"
+    t.string "product_type"
+    t.string "description"
+    t.integer "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "contact_number"
+    t.string "contact_number"
     t.string "address"
     t.string "state"
     t.integer "pin_code"
@@ -40,14 +65,22 @@ ActiveRecord::Schema.define(version: 2023_10_13_080503) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "confirmation_token"
+    t.boolean "admin"
+    t.string "role"
     t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.string "confirmation_token"
     t.string "unconfirmed_email"
-    t.integer "role"
+    t.datetime "confirmation_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
+=======
+  add_foreign_key "items", "users"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users", column: "buyer"
+  add_foreign_key "orders", "users", column: "seller"
+>>>>>>> seller-functionality
   add_foreign_key "products", "users"
 end
