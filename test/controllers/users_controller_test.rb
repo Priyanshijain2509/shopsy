@@ -11,21 +11,25 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @devise_user = users(:joy)
   end
 
+  # user should get sign up page
   test 'should get new registration page' do
     get new_user_registration_path
     assert_response :success
   end
 
+  # when user not logged in it should redirect to login page
   test 'should redirect index when not logged in' do
     get users_path
     assert_redirected_to new_user_session_path
   end
 
+  # when user not logged in it should redirect to login page
   test 'should redirect edit when not logged in' do
     get edit_user_registration_path(@user)
     assert_response :unauthorized
   end
 
+  # when user not logged in it should redirect to login page
   test 'should redirect update when not logged in' do
     patch user_registration_path(@user), params: { user: {
       first_name: @user.first_name, last_name: @user.last_name,
@@ -36,6 +40,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  # when user not logged in it should redirect to login page
   test 'should redirect destroy when not logged in' do
     assert_no_difference 'User.count' do
       delete user_registration_path(@user)
@@ -43,6 +48,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  # when user is logged in and admin then can see all the users
   test 'should redirect destroy when logged in as a non-admin' do
     sign_in users(:archer)
     assert_difference 'User.count', -1 do
@@ -51,6 +57,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  # sign up successfull
   test 'should create a new user' do
     assert_difference('User.count') do
       post user_registration_path, params: { user: {
@@ -69,6 +76,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  # should not create a user with invalid data
   test 'should not create a user with invalid data' do
     assert_no_difference('User.count') do
       post user_registration_path, params: { user: { email: 'invalid-email', password: 'short' } }
@@ -76,17 +84,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
+  # should not update a user with invalid data
   test 'should not update the profile with invalid data' do
     sign_in users(:michael)
     patch user_registration_path, params: { user: { email: 'invalid-email', current_password: 'password123' } }
     assert_response :unprocessable_entity
   end
 
+  # confirmation successfull
   test 'user should be confirmed upon confirmation' do
     @user.confirm
     assert @user.confirmed?
   end
 
+  # user should not be confirmed without confirmation
   test 'user should not be confirmed without confirmation' do
     assert_not @devise_user.confirmed?
   end

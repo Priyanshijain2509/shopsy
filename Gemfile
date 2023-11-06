@@ -27,8 +27,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-ujs'
 # for implementing bootstrap
 gem 'bootstrap-sass', '3.4.1'
-# Use kaminari used to manage pagination
+# use faker to get fake data
 gem 'faker'
+# Use kaminari used to manage pagination
 gem 'kaminari'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -64,4 +65,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+# devise gem to access authentication and more functionality
 gem 'devise', '~> 4.9'

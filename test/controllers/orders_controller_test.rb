@@ -9,6 +9,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     @order = orders(:one)
   end
 
+  # test for placing order
   test 'should create an order' do
     user = users(:johnson)
     product = products(:watch)
@@ -30,6 +31,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Order Confirmation', last_email.subject
   end
 
+  # test for cancelling order
   test 'should cancel an order' do
     user = users(:michael)
     product = products(:watch)

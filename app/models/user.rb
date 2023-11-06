@@ -7,9 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  after_create :send_confirmation_instructions
   before_save { email.downcase! }
 
+  # associations
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy, foreign_key: 'seller'
   has_many :orders, class_name: 'Order', foreign_key: 'buyer'
@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   paginates_per 5
 
+  # validations
   VALID_CONTACTNUMBER_REGEX = /\A[6-9]\d{9}\z/
   validates :first_name, presence: true, length: { minimum: 3, maximum: 30 }
   validates :last_name, presence: true, length: { minimum: 3, maximum: 20 }

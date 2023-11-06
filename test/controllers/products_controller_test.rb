@@ -9,6 +9,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     @product = products(:watch)
   end
 
+  # when user is not logged in
   test 'should redirect create when not logged in' do
     user = users(:michael)
     sign_out user
@@ -23,6 +24,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
+  # when user is not logged in
   test 'should redirect destroy when not logged in' do
     user = users(:michael)
     sign_out user
@@ -32,7 +34,8 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test 'should redirect destroy for wrong micropost' do
+  # when user is destroying another user's product
+  test 'should redirect destroy for wrong product' do
     user = users(:michael)
     product = products(:phone)
     assert_no_difference 'Product.count' do
@@ -41,6 +44,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
+  # for listing product
   test 'should create a product for correct user' do
     user = users(:michael)
     sign_in user

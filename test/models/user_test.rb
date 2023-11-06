@@ -3,6 +3,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  # default method
   def setup
     @user = User.new(
       first_name: 'John', last_name: 'Doe',
@@ -12,70 +13,84 @@ class UserTest < ActiveSupport::TestCase
     )
   end
 
+  # user should be valid
   test 'should be valid' do
     assert @user.valid?
   end
 
+  # first name should be present
   test 'first_name should be present' do
     @user.first_name = ''
     assert_not @user.valid?
   end
 
+  # last name should be present
   test 'last_name should be present' do
     @user.last_name = ''
     assert_not @user.valid?
   end
 
+  # contact number should be present
   test 'contact_number should be present' do
     @user.contact_number = ''
     assert_not @user.valid?
   end
 
+  # email should be present
   test 'email should be present' do
     @user.email = ''
     assert_not @user.valid?
   end
 
+  # address should be present
   test 'address should be present' do
     @user.address = ''
     assert_not @user.valid?
   end
 
+  # state should be present
   test 'state should be present' do
     @user.state = ''
     assert_not @user.valid?
   end
 
+  # pin code should be present
   test 'pin_code should be present' do
     @user.pin_code = ''
     assert_not @user.valid?
   end
 
+  # role should be present
   test 'role should be present' do
     @user.role = ''
     assert_not @user.valid?
   end
 
+  # first name should not be too long
   test 'first_name should not be too long' do
     @user.first_name = 'a' * 31
     assert_not @user.valid?
   end
 
+  # first name should not be too small
   test 'first_name should not be too small' do
     @user.first_name = 'a' * 2
     assert_not @user.valid?
   end
 
+  # last name should not be too long
   test 'last_name should not be too long' do
     @user.last_name = 'a' * 21
     assert_not @user.valid?
   end
 
+  # last name should not be too small
   test 'last_name should not be too small' do
     @user.last_name = 'a' * 2
     assert_not @user.valid?
   end
 
+  # contact should be of correct format
   test 'contact_number should have exactly 10 digits & in correct format' do
     valid_values = %w[9876543210 8976480953]
     valid_values.each do |contact_number|
@@ -90,6 +105,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  # pin should have 6 digits
   test 'pin_code should have exactly 6 digits' do
     valid_values = %w[123456 987654]
     valid_values.each do |pin_code|
