@@ -1,7 +1,5 @@
 <% provide(:title, 'All Users ||') %>
-<div class='back-button'>
-  <%= link_to 'Back', :back, class: 'btn btn-info' %>
-</div>
+<%= render 'static_pages/back_button' %>
 <h1>All Users</h1>
 <%= paginate @users %>
 <div class='table-responsive'>
@@ -21,7 +19,7 @@
           <td><%= user.last_name %></td>
           <td><%= user.role %></td>
           <td>
-            <%= link_to 'DELETE', user, method: :delete, 
+            <%= link_to 'DELETE', user, method: :delete,
             class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>

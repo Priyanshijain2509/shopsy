@@ -10,15 +10,15 @@ class ApplicationController < ActionController::Base
   # to permit additional params other than provided by devise gem
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
-      :sign_up, keys: [
-        :first_name, :last_name, :role, :contact_number,
-        :address, :state, :pin_code
+      :sign_up, keys: %i[
+        first_name last_name role contact_number
+        address state pin_code
       ]
     )
     devise_parameter_sanitizer.permit(
-      :account_update, keys: [
-        :email, :password, :password_confirmation,
-        :contact_number, :address, :state, :pin_code
+      :account_update, keys: %i[
+        email password password_confirmation
+        contact_number address state pin_code
       ]
     )
   end

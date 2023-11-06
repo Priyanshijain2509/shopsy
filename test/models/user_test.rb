@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
       first_name: 'John', last_name: 'Doe',
       contact_number: '9876540210', email: 'user@example.com',
       password: 'password123', address: '123 Main St',
-      state: 'California', pin_code: 123456, role: 'seller'
+      state: 'California', pin_code: 123_456, role: 'seller'
     )
   end
 

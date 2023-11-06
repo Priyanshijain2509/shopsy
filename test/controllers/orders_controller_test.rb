@@ -18,7 +18,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
         buyer: user.id,
         seller: product.user_id,
         product_id: product.id,
-        status: 'Ordered'
+        status: 'Placed'
       } }
     end
     assert_response :success

@@ -13,7 +13,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2023_10_27_052511) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
   create_table 'items', force: :cascade do |t|

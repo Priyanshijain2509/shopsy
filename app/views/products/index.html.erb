@@ -1,8 +1,6 @@
-<div class='back-button'>
-  <%= link_to 'Back', :back, class: 'btn btn-info' %>
-</div>
+<%= render 'static_pages/back_button' %>
 <% if current_user.role == 'seller' %>
-  <%= link_to "Order list", order_list_path, 
+  <%= link_to "Order list", order_list_path,
     class: 'btn btn-primary', data: { product: @products } %>
   <%= link_to 'New Product', new_user_product_path(
       user_id: current_user.id), class: 'btn btn-primary' %>
@@ -27,7 +25,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <% count = product.orders.where(status: 'Placed', 
+          <% count = product.orders.where(status: 'Placed',
             product_id: product.id).count %>
           <tr>
             <td><%= product.product_name %></td>
@@ -37,20 +35,22 @@
             <% if current_user.role == 'buyer' %>
               <td>
                 <% if product.product_status == 'Active' %>
-                  <%= render 'orders/order_button', product: product, 
+                  <%= render 'orders/order_button', product: product,
                     user_id: product.user_id %>
                 <% else %>
                   <%= content_tag :span, 'Out of stock!', class: 'btn' %>
                 <% end %>
               </td>
             <% else %>
-              <td><%= product.product_status %></td>
-              <td><%= link_to 'Edit', edit_user_product_path(
-                  user_id: product.user_id, id: product.id), 
-                  class: 'btn btn-warning' %>
-              </td>
+              <% if current_user.role == 'seller' %>
+                <td><%= product.product_status %></td>
+                <td><%= link_to 'Edit', edit_user_product_path(
+                    user_id: product.user_id, id: product.id),
+                    class: 'btn btn-warning' %>
+                </td>
+              <% end %>
               <td><%= link_to 'Destroy', user_product_path(
-                  user_id: product.user_id, id: product.id), method: :delete, 
+                  user_id: product.user_id, id: product.id), method: :delete,
                   data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
               </td>
             <% end %>

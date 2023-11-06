@@ -2,13 +2,11 @@
 
 # Product controller for ceating and manipulating products
 class ProductsController < ApplicationController
+  before_action :set_product, only: %i[edit update destroy]
   # to display all products
   def index
-    if current_user.role == 'seller'
-      @products = current_user.products.page params[:page]
-    else
-      @products = Product.page params[:page]
-    end
+    @products = current_user.seller? ? current_user.products : Product.all
+    @products = @products.page params[:page]
   end
 
   # create new product
@@ -23,11 +21,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # for displaying all products to admin
-  def show
-    @users = User.where(role: 'seller').page params[:page]
-  end
-
   # for new product form
   def new
     user_id = params[:user_id]
@@ -35,13 +28,10 @@ class ProductsController < ApplicationController
   end
 
   # to edit the product details
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   # to destroy the product
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     flash[:notice] = 'Product deleted'
     redirect_to request.referrer
@@ -49,7 +39,6 @@ class ProductsController < ApplicationController
 
   # to update the product details
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:notice] = 'Product updated'
       redirect_to products_url(@product)

@@ -63,7 +63,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         contact_number: '9634511021',
         address: 'Kota',
         state: 'Rajasthan',
-        pin_code: 321450
+        pin_code: 321_450
       } }
     end
     assert_redirected_to root_path
