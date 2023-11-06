@@ -1,0 +1,87 @@
+<% if current_user.role == 'seller' %>
+<%= render 'static_pages/back_button' %>
+  <h1>Welcome to Your Dashboard</h1>
+  <h2>Your Orders</h2>
+  <% if @products.empty? %>
+    <p>No products posted yet.</p>
+  <% else %>
+    <%= paginate @products %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Buyer Name</th>
+            <th>Buyer Address</th>
+            <th>Order Id</th>
+            <th>Ordered At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.product_name %></td>
+              <td><%= product.price %><%= ' $ ' %></td>
+              <td></td>
+            </tr>
+            <% product.orders.where(status: 'Placed').each do |order| %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= order.org_buyer.first_name %></td>
+                <td><%= order.org_buyer.address %></td>
+                <td><%= order.id %></td>
+                <td><%= order.created_at %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% else %>
+  <div class='back-button'>
+    <%= link_to 'Back', :back, class: 'btn btn-info' %>
+  </div>
+  <h1>Orders</h1>
+  <% if @orders.empty? %>
+    <h3>No orders yet.</h3>
+  <% else %>
+  <%= paginate @orders %>
+  <div class='table-responsive'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Product name</th>
+          <th>Product type</th>
+          <th>Price</th>
+          <th>Order Id</th>
+          <th>Ordered At</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.product.product_name %></td>
+            <td><%= order.product.product_type %></td>
+            <td><%= order.product.price %><%= ' $ ' %></td>
+            <td><%= order.id %></td>
+            <td><%= order.created_at %></td>
+            <td>
+              <% if order.status == 'Placed' %>
+                <%= content_tag :span, order.status, class: 'btn btn-success' %>
+              <% else %>
+                <%= content_tag :span, order.status, class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+<% end %>

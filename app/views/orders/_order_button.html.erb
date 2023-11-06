@@ -1,7 +1,7 @@
 <div id="button_product_<%= product.id %>" >
   <% if current_user.role == 'buyer' && product.orders.exists?(
-    status: 'Ordered', buyer: current_user.id) %>
-    <% product.orders.where(status: 'Ordered', 
+    status: 'Placed', buyer: current_user.id) %>
+    <% product.orders.where(status: 'Placed', 
       buyer: current_user.id).each do |order| %>
       <%= render 'orders/cancel', product: product, 
         user_id: product.user_id, order: order %>

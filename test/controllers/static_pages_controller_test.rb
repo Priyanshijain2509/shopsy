@@ -1,24 +1,35 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get home" do
-    get static_pages_home_url
+  include Devise::Test::IntegrationHelpers
+
+  def setup
+    sign_in users(:michael)
+  end
+
+  # home page
+  test 'should get home' do
+    get home_path
     assert_response :success
   end
 
-  test "should get help" do
-    get static_pages_help_url
+  # help page
+  test 'should get help' do
+    get help_path
     assert_response :success
   end
 
-  test "should get about" do
-    get static_pages_about_url
+  # about page
+  test 'should get about' do
+    get about_path
     assert_response :success
   end
 
-  test "should get contact" do
-    get static_pages_contact_url
+  # contact page
+  test 'should get contact' do
+    get contact_path
     assert_response :success
   end
-
 end

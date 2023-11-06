@@ -1,4 +1,9 @@
-<h1>Editing Product</h1>
-<%= render 'form', product: @product %>
-<%= link_to 'Show', products_path, class: 'btn btn-info'%> |
-<%= link_to 'Back', products_path, class: 'btn btn-info' %>
+<%= render 'static_pages/back_button' %>
+<div class='a-container'>
+  <div class='row'>
+    <div class='add-container border border-secondary'>
+      <h1>Edit Product</h1>
+      <%= render 'form', product: @product %>
+    </div>
+  </div>
+</div>

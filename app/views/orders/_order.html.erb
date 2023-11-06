@@ -1,9 +1,9 @@
 <% product ||= @product %>
 <%= form_with(model: product.orders.new, url: user_product_orders_path(
     current_user.id, product), remote: true) do |f| %>
-  <div><%= hidden_field_tag :buyer, current_user.id %></div>
-  <div><%= hidden_field_tag :seller, product.user_id %></div>
-  <div><%= hidden_field_tag :status, 'Ordered' %></div>
-  <%= f.submit 'Order', class: 'btn btn-success', 
-        id: "button_product_#{product.id}" %>
+  <div><%= f.hidden_field :buyer, value: current_user.id %></div>
+  <div><%= f.hidden_field :seller, value: product.user_id %></div>
+  <div><%= f.hidden_field :status, value: 'Placed' %></div>
+  <%= f.submit 'Order', class: 'btn btn-success',
+      id: "button_product_#{product.id}" %>
 <% end %>

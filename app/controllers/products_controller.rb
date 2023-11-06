@@ -1,60 +1,51 @@
 # frozen_string_literal: true
 
+# Product controller for ceating and manipulating products
 class ProductsController < ApplicationController
-
+  before_action :set_product, only: %i[edit update destroy]
+  # to display all products
   def index
-    if current_user.role == 'seller'
-      @products = current_user.products.page params[:page]
-    else
-      @products = Product.page params[:page]
-    end
+    @products = current_user.seller? ? current_user.products : Product.all
+    @products = @products.page params[:page]
   end
-  
+
+  # create new product
   def create
     @product = current_user.products.new(product_params)
     if @product.save
-      flash[:success] = 'Product Listed'
+      flash[:notice] = 'Product successfully created!'
       redirect_to products_url(@product)
     else
-      flash[:error] = "Product can't be created"
+      flash[:alert] = 'Error creating the product.'
       render partial: 'products/form'
     end
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
-
+  # for new product form
   def new
     user_id = params[:user_id]
     @product = User.find(user_id).products.new
   end
-  
-  
-  def edit
-    @product = Product.find(params[:id])
-  end
-  
+
+  # to edit the product details
+  def edit; end
+
+  # to destroy the product
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
-    flash[:success] = 'Product deleted'
+    flash[:notice] = 'Product deleted'
     redirect_to request.referrer
   end
-  
+
+  # to update the product details
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash[:success] = 'Product updated'
+      flash[:notice] = 'Product updated'
       redirect_to products_url(@product)
     else
-      flash[:error] = "Product couldn't be updated"
+      flash[:alert] = "Product couldn't be updated"
       render 'edit'
     end
-  end
-  
-  def seller_dashboard
-    @products = current_user.products.page params[:page]
   end
 
   private
@@ -64,8 +55,8 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:product_name, 
-      :product_type, :description, :price)
+    params.require(:product).permit(
+      :product_name, :product_type, :description, :price, :product_status
+    )
   end
-
 end

@@ -1,11 +1,11 @@
 one:
-  buyer: 1
-  seller: 1
-  product: one
-  status: MyString
+  org_buyer: archer
+  org_seller: michael
+  product: watch
+  status: 'Placed'
 
 two:
-  buyer: 1
-  seller: 1
-  product: two
-  status: MyString
+  org_buyer: johnson
+  org_seller: smith
+  product: phone
+  status: 'Cancelled'
