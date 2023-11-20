@@ -10,8 +10,6 @@ import EditForm from './products/EditForm';
 import Order_Index from '../components/orders/Order_Index';
 import CreateForm from './products/CreateForm';
 import '../packs/index.css';
-import NewOrder from './orders/NewOrder';
-import CancelOrder from './orders/CancelOrder';
 function Welcome({ current_user }) {
   console.log('Current User from welcome:', current_user);
 

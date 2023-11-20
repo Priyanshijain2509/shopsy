@@ -11,11 +11,10 @@
       <% end %>
     <% end %>
   </div>
-<% else %>
+     <%= react_component 'ChangingImages' %>
+  <% else %>
   <div class='center jumbotron'>
     <h2>Welcome to the Shopsy App</h2>
-    <%= react_component('Welcome', greeting: 'Helloo') %>
-    <%= javascript_pack_tag 'hello_react' %>
     <p>Discover a world of convenience and endless choices at
       <a href='#'>Shopsy.com</a>, your premier online shopping destination.
       We're dedicated to providing you with an exceptional shopping experience,

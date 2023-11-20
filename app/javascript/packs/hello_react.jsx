@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Welcome from '../components/Welcome'
 import { UserProvider } from './UserContext'
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <UserProvider>

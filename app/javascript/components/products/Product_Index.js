@@ -181,20 +181,25 @@ function Product_Index() {
                       <td>{product.price} $</td>
 											{current_user.role === 'buyer' && (
 												<td>
-													{orders.some(order => order.buyer === current_user.id
-													&& order.status === 'Placed') ? (
-														<button className='btn btn-danger'
-															onClick={() => handleCancel(
-																current_user.id, product.id, orders.find(
-																order => order.buyer === current_user.id &&
-																order.status === 'Placed').id)}>
-															Cancel
-														</button>
+													{product.product_status === 'Archived' ? (
+														<p>Out of Stock</p>
 													) : (
-														<button className='btn btn-success' onClick={
-															() => handleOrder(current_user.id, product.id)}>
-															Order
-														</button>
+														orders.some(order => order.buyer === current_user.id
+															&& order.status === 'Placed') ? (
+															<button className='btn btn-danger'
+																onClick={() => handleCancel(
+																	current_user.id, product.id, orders.find(
+																		order => order.buyer === current_user.id &&
+																		order.status === 'Placed').id)}>
+																Cancel
+															</button>
+														) : (
+															<button
+																className='btn btn-success' onClick={
+																	() => handleOrder(current_user.id, product.id)}>
+																Order
+															</button>
+														)
 													)}
 												</td>
 											)}

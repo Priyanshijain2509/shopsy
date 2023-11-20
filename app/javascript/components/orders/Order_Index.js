@@ -32,11 +32,11 @@ function Order_Index({ current_user }) {
                   <tr>
                     <th>Product</th>
                     <th>Price</th>
+                    <th></th>
                     <th>Buyer Name</th>
                     <th>Buyer Address</th>
                     <th>Order Id</th>
                     <th>Ordered At</th>
-                    <th>Order Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,6 +45,7 @@ function Order_Index({ current_user }) {
                       <tr>
                         <td>{product.product_name}</td>
                         <td>{`${product.price} $`}</td>
+                        <td></td>
                       </tr>
                       {product.orders &&
                           product.orders
@@ -53,17 +54,11 @@ function Order_Index({ current_user }) {
                               <tr key={order.id}>
                                 <td></td>
                                 <td></td>
-                                <td>{order.org_buyer.first_name}</td>
-                                <td>{order.org_buyer.address}</td>
+                                <td></td>
+                                <td>{order.org_buyer?.first_name}</td>
+                                <td>{order.org_buyer?.address}</td>
                                 <td>{order.id}</td>
                                 <td>{order.created_at}</td>
-                                <td>
-                                  {order.status === 'Placed' ? (
-                                    <span className='btn btn-success'>{order.status}</span>
-                                  ) : (
-                                    <span className='btn btn-danger'>{order.status}</span>
-                                  )}
-                                </td>
                               </tr>
                             ))}
                     </React.Fragment>
@@ -77,7 +72,7 @@ function Order_Index({ current_user }) {
         </>
       ) : (
         <>
-          <h1>Orders</h1>
+          <h1>My Orders</h1>
           {data && data.length === 0 ? (
             <h3>No orders yet.</h3>
           ) : (
