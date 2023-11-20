@@ -3,17 +3,19 @@
   <h3>Discover our amazing products</h3>
   <div id = 'root-page-buttons'>
     <% if current_user.role == 'admin' %>
-      <%= link_to 'View All Users', all_user_path, class: 'btn btn-primary' %>
-      <%= link_to 'View All Products', products_path, class: 'btn btn-primary' %>
+      <%= link_to 'View All Users', all_users_path, class: 'btn btn-primary' %>
+      <%= link_to 'View All Products', all_products_path, class: 'btn btn-primary' %>
     <% else %>
       <% if current_user.role == 'seller' || current_user.role == 'buyer' %>
-        <%= link_to 'View All Products', products_path, class: 'btn btn-primary' %>
+        <%= link_to 'View All Products', all_products_path, class: 'btn btn-primary' %>
       <% end %>
     <% end %>
   </div>
 <% else %>
   <div class='center jumbotron'>
     <h2>Welcome to the Shopsy App</h2>
+    <%= react_component('Welcome', greeting: 'Helloo') %>
+    <%= javascript_pack_tag 'hello_react' %>
     <p>Discover a world of convenience and endless choices at
       <a href='#'>Shopsy.com</a>, your premier online shopping destination.
       We're dedicated to providing you with an exceptional shopping experience,

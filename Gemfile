@@ -67,3 +67,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gem to access authentication and more functionality
 gem 'devise', '~> 4.9'
+
+# react integration with rails using react-rails gem
+gem 'react-rails', '2.7.1'
+
+# rack cors gem to connect api
+gem 'rack-cors'
