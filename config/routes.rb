@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/products/new', to: 'static_pages#home'
   post '/products/new', to: 'products#create'
 
-  get 'users/:user_id/products/:product_id/orders', to: 'static_pages#home'
+  post 'users/:user_id/products/:product_id/orders', to: 'orders#create'
   post '/orders/new', to: 'orders#create'
   get '/users/:user_id/products/:product_id/orders/:id', to: 'static_pages#home'
   put '/orders/cancel', to: 'orders#update'

@@ -30,9 +30,7 @@ function Welcome({ current_user }) {
             path='/order_list'
             element={< Order_Index current_user={current_user} />}
           />
-          <Route path='/users/:user_id/products/:product_id/orders' element={< NewOrder />} />
-          <Route path='/users/:user_id/products/:product_id/orders/:id' element={< CancelOrder />} />
-        </Routes>
+          </Routes>
       </BrowserRouter>
     </>
   );

@@ -7,6 +7,9 @@ function Product_Index() {
   const [products, setProducts] = useState([]);
 	const [current_user, setCurrentUser] = useState([]);
 	const [editingProduct, setEditingProduct] = useState(null);
+	const [status, setStatus] = useState('Placed');
+	const [updateStatus, setUpdateStatus] = useState('Cancelled');
+	const [product, setProduct] = useState(null);
 	let { id } = useParams();
 
 	useEffect(() => {
@@ -62,6 +65,79 @@ function Product_Index() {
 		});
 	};
 
+	const handleOrder = (user_id, id) =>{
+		const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+		fetch(`/products/${id}`)
+		.then((response) => response.json())
+		.then((data) => {
+			setProduct(data.product);
+
+	  	const newOrderData = {
+			buyer: current_user.id,
+			seller: data.product.user_id,
+			status: status,
+			product_id: data.product.id,
+		  };
+
+			fetch(`/users/${user_id}/products/${id}/orders`, {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRF-Token': csrfToken,
+				},
+				body: JSON.stringify(newOrderData),
+			})
+			.then((response) => response.json())
+            .then((orderData) => {
+              console.log('Order API Response', orderData);
+							window.location.href = '/all_products';
+            })
+            .catch((error) => {
+              console.error('Order API Error', error);
+            });
+        })
+        .catch((error) => {
+          console.error('Product API Error', error);
+        });
+    }
+
+	const handleCancel = (user_id, productId, id) => {
+		const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+		fetch(`/products/${productId}`)
+		.then((response) => response.json())
+		.then((data) => {
+			setProduct(data.product);
+
+	  	const updateOrderData = {
+			id: id,
+			buyer: user_id,
+			seller: data.product.user_id,
+			status: updateStatus,
+			product_id: data.product.id,
+		  };
+
+		fetch(`/users/${user_id}/products/${productId}/orders/${id}`, {
+			method: "PUT",
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRF-Token': csrfToken,
+				},
+				body: JSON.stringify(updateOrderData),
+			})
+			.then((response) => response.json())
+            .then((orderData) => {
+              console.log('Order API Response', orderData);
+							window.location.href = '/all_products';
+            })
+            .catch((error) => {
+              console.error('Order API Error', error);
+            });
+        })
+        .catch((error) => {
+          console.error('Product API Error', error);
+        });
+    }
+
   return (
     <>
 			{current_user.role === 'seller' && (
@@ -107,17 +183,18 @@ function Product_Index() {
 												<td>
 													{orders.some(order => order.buyer === current_user.id
 													&& order.status === 'Placed') ? (
-														<Link to=
-														{`/users/${current_user.id}/products/${product.id}/orders/${orders.find(
-															order => order.buyer === current_user.id && order.status === 'Placed').id}`}
-															className='btn btn-danger'>
+														<button className='btn btn-danger'
+															onClick={() => handleCancel(
+																current_user.id, product.id, orders.find(
+																order => order.buyer === current_user.id &&
+																order.status === 'Placed').id)}>
 															Cancel
-														</Link>
+														</button>
 													) : (
-														<Link to={`/users/${current_user.id}/products/${product.id}/orders`}
-														className='btn btn-success'>
+														<button className='btn btn-success' onClick={
+															() => handleOrder(current_user.id, product.id)}>
 															Order
-														</Link>
+														</button>
 													)}
 												</td>
 											)}
