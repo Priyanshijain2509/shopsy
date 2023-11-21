@@ -28,7 +28,6 @@ function Order_Index({ current_user }) {
                   <tr>
                     <th>Product</th>
                     <th>Price</th>
-                    <th></th>
                     <th>Buyer Name</th>
                     <th>Buyer Address</th>
                     <th>Order Id</th>
@@ -38,27 +37,31 @@ function Order_Index({ current_user }) {
                 <tbody>
                   {data.map((product) => (
                     <React.Fragment key={product.id}>
-                      <tr>
-                        <td>{product.product_name}</td>
-                        <td>{`${product.price} $`}</td>
-                        <td></td>
-                      </tr>
                       {product.orders &&
-                          product.orders
-                            .filter((order) => order.status === 'Placed')
-                            .map((order) => (
-                              <tr key={order.id}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>{order.org_buyer?.first_name}</td>
-                                <td>{order.org_buyer?.address}</td>
-                                <td>{order.id}</td>
-                                <td>{order.created_at}</td>
-                              </tr>
-                            ))}
-                    </React.Fragment>
-                  ))}
+                        product.orders
+                          .filter((order) => order.status === 'Placed')
+                          .map((order, index) => (
+                            <tr key={order.id}>
+                              {index === 0 ? (
+                                <>
+                                  <td>{product.product_name}</td>
+                                  <td>{`${product.price} $`}</td>
+                                </>
+                              ) : (
+                                <>
+                                  <td></td>
+                                  <td></td>
+                                </>
+                              )}
+                              <td>{order.org_buyer?.first_name}</td>
+                              <td>{order.org_buyer?.address}</td>
+                              <td>{order.id}</td>
+                              <td>{order.created_at}</td>
+                            </tr>
+                          ))
+                        }
+                      </React.Fragment>
+                    ))}
                 </tbody>
               </table>
             </div>

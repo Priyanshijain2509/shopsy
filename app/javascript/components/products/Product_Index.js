@@ -131,7 +131,6 @@ function Product_Index() {
 							.then((response) => response.json())
 							.then((orderData) => {
 								console.log('Order API Response', orderData);
-								window.location.href = '/all_products';
 							})
 							.catch((error) => {
 								console.error('Order API Error', error);

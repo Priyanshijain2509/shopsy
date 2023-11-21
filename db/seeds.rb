@@ -14,9 +14,18 @@ states = %w[Assam Bihar Goa Gujarat Haryana Karnataka Kerla
 
 10.times do |n|
   email = "buyer-#{n + 1}@co.in"
+  first_name = Faker::Name.first_name
+  while first_name.length < 3
+    first_name = Faker::Name.first_name
+  end
+  last_name = Faker::Name.last_name
+  while last_name.length < 3
+    last_name = Faker::Name.last_name
+  end
+
   User.create!([{
-                 first_name: Faker::Name.first_name,
-                 last_name: Faker::Name.last_name,
+                 first_name: first_name,
+                 last_name: last_name,
                  contact_number: "8#{Faker::Number.number(digits: 9)}",
                  address: Faker::Address.street_address,
                  state: states.sample,
@@ -65,6 +74,6 @@ end
     buyer: buyer.id,
     seller: product.user.id,
     product_id: product.id,
-    status: %w[Ordered Cancelled].sample
+    status: %w[Placed Cancelled].sample
   )
 end

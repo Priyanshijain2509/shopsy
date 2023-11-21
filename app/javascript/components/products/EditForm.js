@@ -121,10 +121,11 @@ function EditForm({ current_user}) {
             className='form-select'
             name='product_status'
             value={productStatus}
-            onChange={(e) => setProductStatus(e.target.value)}></select>
+            onChange={(e) => setProductStatus(e.target.value)}>
             <option value=''>Select status</option>
             <option value='Active'>Active</option>
             <option value='Archived'>Archived</option>
+            </select>
           </div>
         < br/>
         <div className='mb-3'>
