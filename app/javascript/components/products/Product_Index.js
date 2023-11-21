@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import EditForm from '../products/EditForm';
-import { useParams } from "react-router";
+import { useParams } from 'react-router';
 
 function Product_Index() {
   const [products, setProducts] = useState([]);
@@ -80,7 +79,7 @@ function Product_Index() {
 		  };
 
 			fetch(`/users/${user_id}/products/${id}/orders`, {
-				method: "POST",
+				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 					'X-CSRF-Token': csrfToken,
@@ -91,6 +90,7 @@ function Product_Index() {
             .then((orderData) => {
               console.log('Order API Response', orderData);
 							window.location.href = '/all_products';
+							alert('Order Placed!');
             })
             .catch((error) => {
               console.error('Order API Error', error);
@@ -101,42 +101,47 @@ function Product_Index() {
         });
     }
 
-	const handleCancel = (user_id, productId, id) => {
-		const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-		fetch(`/products/${productId}`)
-		.then((response) => response.json())
-		.then((data) => {
-			setProduct(data.product);
+		const handleCancel = (user_id, productId, id) => {
+			const shouldCancel = window.confirm('Do you want to cancel the order?');
 
-	  	const updateOrderData = {
-			id: id,
-			buyer: user_id,
-			seller: data.product.user_id,
-			status: updateStatus,
-			product_id: data.product.id,
-		  };
+			if (shouldCancel) {
+				const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-		fetch(`/users/${user_id}/products/${productId}/orders/${id}`, {
-			method: "PUT",
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRF-Token': csrfToken,
-				},
-				body: JSON.stringify(updateOrderData),
-			})
-			.then((response) => response.json())
-            .then((orderData) => {
-              console.log('Order API Response', orderData);
-							window.location.href = '/all_products';
-            })
-            .catch((error) => {
-              console.error('Order API Error', error);
-            });
-        })
-        .catch((error) => {
-          console.error('Product API Error', error);
-        });
-    }
+				fetch(`/products/${productId}`)
+					.then((response) => response.json())
+					.then((data) => {
+						setProduct(data.product);
+
+						const updateOrderData = {
+							id: id,
+							buyer: user_id,
+							seller: data.product.user_id,
+							status: updateStatus,
+							product_id: data.product.id,
+						};
+
+						fetch(`/users/${user_id}/products/${productId}/orders/${id}`, {
+							method: 'PUT',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-CSRF-Token': csrfToken,
+							},
+							body: JSON.stringify(updateOrderData),
+						})
+							.then((response) => response.json())
+							.then((orderData) => {
+								console.log('Order API Response', orderData);
+								window.location.href = '/all_products';
+							})
+							.catch((error) => {
+								console.error('Order API Error', error);
+							});
+					})
+					.catch((error) => {
+						console.error('Product API Error', error);
+					});
+			}
+		};
 
   return (
     <>
@@ -236,13 +241,6 @@ function Product_Index() {
             </table>
           </div>
         </div>
-      )}
-			 {editingProduct && (
-        <EditForm
-          product={editingProduct}
-          onSubmit={handleUpdate}
-          onCancel={handleCancelEdit}
-        />
       )}
     </>
   );

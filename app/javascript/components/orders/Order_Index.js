@@ -15,10 +15,6 @@ function Order_Index({ current_user }) {
       });
   }, []);
 
-  console.log('cr', current_user);
-
-  console.log('Data outside useEffect', data);
-
   return (
     <>
       {current_user && current_user.role === 'seller' ? (

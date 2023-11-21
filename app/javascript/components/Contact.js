@@ -20,7 +20,7 @@ function Contact() {
       </ul>
       <p>
         Thank you for choosing{' '}
-        <a href="https://www.shopsy.in/">Shopsy.com</a> for your online shopping needs. We appreciate your trust in us and are here to assist you every step of the way. Happy shopping!
+        <a href='https://www.shopsy.in/'>Shopsy.com</a> for your online shopping needs. We appreciate your trust in us and are here to assist you every step of the way. Happy shopping!
       </p>
     </div>
   );

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/all_products', to: 'static_pages#home'
   get '/products/:id', to: 'products#show'
   get '/all_products/:id/edit', to: 'static_pages#home'
-  put '/products/:id', to: 'products#update'
+  patch '/products/:id', to: 'products#update'
   get '/users/:user_id/products/new', to: 'static_pages#home'
   post '/products/new', to: 'products#create'
 

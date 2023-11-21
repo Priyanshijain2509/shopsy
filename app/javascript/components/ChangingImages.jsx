@@ -28,12 +28,12 @@ const ChangingImages = () => {
 	const settings = {
 		infinite: true,
 		speed: 1000,
-		slidesToShow: 3, // Show one slide at a time
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 4000,
-		centerMode: true, // Enable center mode
-		centerPadding: '0', // Adjust the padding to control how much of the previous and next slides are visible
+		centerMode: true,
+		centerPadding: '0',
 	};
 
 	return (

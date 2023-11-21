@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 function Index() {
   const [users, setUsers] = useState([]);
@@ -19,10 +19,10 @@ function Index() {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
     fetch(`/users/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken,
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
       },
     })
     .then((response) => response.json())
@@ -33,14 +33,14 @@ function Index() {
       alert(data.message);
     })
     .catch((error) => {
-      console.error("Error deleting user", error);
+      console.error('Error deleting user', error);
     });
   };
 
   return (
     <div>
       <h1>All Users</h1>
-      <table className="table table-striped">
+      <table className='table table-striped'>
         <thead>
           <tr>
             <th>First Name</th>
@@ -57,7 +57,7 @@ function Index() {
               <td>{user.role}</td>
               <td>
                 <button
-                  className="btn btn-danger btn-sm"
+                  className='btn btn-danger btn-sm'
                   onClick={() => handleDelete(user.id)} >
                   DELETE
                 </button>

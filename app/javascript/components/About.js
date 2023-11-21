@@ -7,7 +7,7 @@ function About() {
 
       <p>
         Discover a world of convenience and endless choices at{' '}
-        <a href="https://www.shopsy.in/" target="_blank">
+        <a href='https://www.shopsy.in/' target='_blank'>
           Shopsy.com
         </a>
         , your premier online shopping destination. We're dedicated to providing

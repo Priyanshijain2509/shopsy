@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
-
-function EditForm({ current_user, productId }) {
+import { useParams } from 'react-router-dom';
+function EditForm({ current_user}) {
   const [productName, setProductName] = useState('');
   const [productType, setProductType] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(1);
-  const [productStatus, setProductStatus] = useState('Active');
+  const [productStatus, setProductStatus] = useState('');
+  const { id } = useParams();
 
   useEffect(() => {
-    // Fetch product data based on productId and update state
-    fetch(`/products/${productId}`)
+    console.log('Fetching product with ID:', id);
+    fetch(`/products/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        const { product_name, product_type, description, price, product_status } = data;
-        setProductName(product_name);
-        setProductType(product_type);
-        setDescription(description);
-        setPrice(price);
-        setProductStatus(product_status);
+        console.log('data from Edit Form', data)
+        setProductName(data.product.product_name);
+        setProductType(data.product.product_type);
+        setDescription(data.product.description);
+        setPrice(data.product.price);
+        setProductStatus(data.product.product_status);
       })
       .catch((error) => {
         console.error('API Error', error);
       });
-  }, [productId]);
+  }, [id]);
+
+  useEffect(() => {
+    console.log('Rendering EditForm with:', productName, productType, description, price, productStatus);
+  }, [productName, productType, description, price, productStatus]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +40,7 @@ function EditForm({ current_user, productId }) {
       product_status: productStatus,
     };
 
-    fetch(`/products/${productId}/edit`, {
+    fetch(`/products/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -58,77 +63,79 @@ function EditForm({ current_user, productId }) {
   };
 
   return (
-    <div className="container mt-4 box">
+    <>
+    <div className='container mt-4 box'>
       <h2>Edit Product</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Product Name</label>
+        <div className='mb-3'>
+          <label className='form-label'>Product Name</label>
           <input
-            type="text"
-            className="form-control"
-            name="product_name"
+            type='text'
+            className='form-control'
+            name='product_name'
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
           />
         </div>
         < br/>
-        <div className="mb-3">
-          <label className="form-label">Product Type</label>
+        <div className='mb-3'>
+          <label className='form-label'>Product Type</label>
           <select
-            className="form-select"
-            name="product_type"
+            className='form-select'
+            name='product_type'
             value={productType}
             onChange={(e) => setProductType(e.target.value)}>
-            <option value="">Select Type</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Electronic">Electronic</option>
-            <option value="Health Care">Health Care</option>
-            <option value="Home Decor">Home Decor</option>
-            <option value="Grocery">Grocery</option>
+            <option value=''>Select Type</option>
+            <option value='Clothes'>Clothes</option>
+            <option value='Electronic'>Electronic</option>
+            <option value='Health Care'>Health Care</option>
+            <option value='Home Decor'>Home Decor</option>
+            <option value='Grocery'>Grocery</option>
           </select>
         </div>
         < br/>
-        <div className="mb-3">
-          <label className="form-label">Description</label>
+        <div className='mb-3'>
+          <label className='form-label'>Description</label>
           <textarea
-            className="form-control"
-            name="description"
+            className='form-control'
+            name='description'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         < br/>
-        <div className="mb-3">
-          <label className="form-label">Price</label>
+        <div className='mb-3'>
+          <label className='form-label'>Price</label>
           <input
-            type="number"
-            className="form-control"
-            name="price"
+            type='number'
+            className='form-control'
+            name='price'
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         < br/>
-        <div className="mb-3">
-          <label className="form-label">Product Status</label>
+        <div className='mb-3'>
+          <label className='form-label'>Product Status</label>
           <select
-            className="form-select"
-            name="product_status"
+            className='form-select'
+            name='product_status'
             value={productStatus}
-            onChange={(e) => setProductStatus(e.target.value)}>
-            <option value="Active">Active</option>
-            <option value="Archived">Archived</option>
-          </select>
-        </div>
+            onChange={(e) => setProductStatus(e.target.value)}></select>
+            <option value=''>Select status</option>
+            <option value='Active'>Active</option>
+            <option value='Archived'>Archived</option>
+          </div>
         < br/>
-        <div className="mb-3">
-          <button type="submit" className="btn btn-success me-2">Update Product</button>
-          <button type="button" className="btn btn-danger" onClick={handleCancel}>
+        <div className='mb-3'>
+          <button type='submit' className='btn btn-success me-2'>Update Product</button>
+          <button type='button' className='btn btn-danger' onClick={handleCancel}>
             Cancel
           </button>
         </div>
       </form>
     </div>
+    </>
   );
 }
 
