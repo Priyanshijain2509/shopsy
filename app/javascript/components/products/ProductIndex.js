@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 
-function Product_Index() {
+function ProductIndex() {
   const [products, setProducts] = useState([]);
 	const [current_user, setCurrentUser] = useState([]);
 	const [editingProduct, setEditingProduct] = useState(null);
@@ -12,7 +12,12 @@ function Product_Index() {
 	let { id } = useParams();
 
 	useEffect(() => {
-		fetch('/products')
+		fetch('/products/',{
+				method: 'GET',
+				headers: {
+						'Accept': 'application/json',
+				},
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				const { products, current_user } = data;
@@ -245,4 +250,4 @@ function Product_Index() {
   );
 }
 
-export default Product_Index;
+export default ProductIndex;

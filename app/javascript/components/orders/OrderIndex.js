@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Order_Index({ current_user }) {
+function OrderIndex({ current_user }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -117,4 +117,4 @@ function Order_Index({ current_user }) {
   );
 }
 
-export default Order_Index;
+export default OrderIndex;

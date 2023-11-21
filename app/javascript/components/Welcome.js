@@ -5,9 +5,9 @@ import Help from '../components/Help';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import Index from '../components/users/Index';
-import Product_Index from '../components/products/Product_Index';
+import ProductIndex from '../components/products/ProductIndex';
 import EditForm from './products/EditForm';
-import Order_Index from '../components/orders/Order_Index';
+import OrderIndex from '../components/orders/OrderIndex';
 import CreateForm from './products/CreateForm';
 import '../packs/index.css';
 function Welcome({ current_user }) {
@@ -21,12 +21,12 @@ function Welcome({ current_user }) {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/all_users' element={<Index />} />
-          <Route path='/all_products' element={<Product_Index />} />
+          <Route path='/all_products' element={<ProductIndex />} />
           <Route path='/all_products/:id/edit' element={<EditForm />} />
           <Route path='/users/:id/products/new' element={<CreateForm current_user={current_user}/>} />
           <Route
             path='/order_list'
-            element={< Order_Index current_user={current_user} />}
+            element={< OrderIndex current_user={current_user} />}
           />
           </Routes>
       </BrowserRouter>

@@ -9,13 +9,13 @@ class UsersController < ApplicationController
     render json: users
   end
 
-  def all_users
-  end
+  # action to handle api from react
+  def all_users; end
 
-    # to destroy the user
-    def destroy
-      @user = User.find(params[:id])
-      @user.destroy
-      render json: { message: 'User deleted successfully' }, status: :ok
-    end
+  # to destroy the user
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    render json: { message: 'User deleted successfully' }, status: :created
+  end
 end
