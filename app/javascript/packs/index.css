@@ -1,0 +1,22 @@
+.center h2{
+  font-size: 4rem;
+}
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.container.mt-4.box {
+    width: 50rem;
+}
+
+.btn{
+  margin: 1rem 1rem 1rem 0rem;
+  text-transform: uppercase;
+  padding: 4px, 8px;
+}
+
+.container.box {
+  margin-bottom: 60px; /* You can adjust the value based on your design */
+}

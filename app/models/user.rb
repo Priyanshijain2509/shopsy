@@ -12,8 +12,7 @@ class User < ApplicationRecord
   # associations
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy, foreign_key: 'seller'
-  has_many :orders, class_name: 'Order', foreign_key: 'buyer'
-  has_many :orders_as_seller, class_name: 'Order', foreign_key: 'seller'
+  has_many :orders, dependent: :destroy, foreign_key: 'buyer'
 
   paginates_per 5
 
