@@ -292,6 +292,79 @@ body {
 }
 
 #root-page-buttons{
-  margin-top:25px;
+  margin-top: 25px;
   text-align: center;
+}
+
+.centered-image {
+  display: block;
+  padding-top: 2rem;
+  margin: 0 auto;
+  height: auto;
+  width: 65%;
+}
+
+.btn{
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+.btn-primary {
+  background-color: #8ed2fc;
+  border: 2px solid #35424a;
+}
+
+.btn-primary:hover {
+  background-color: #42b2f8;
+  border-color: #283238;
+}
+
+.btn-success {
+  background-color: #65d465;
+  border: 2px solid #65d465;
+}
+
+.btn-success:hover {
+  background-color: #3caa3c;
+  border-color: #283238;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border: 2px solid #d9534f;
+}
+
+.btn-danger:hover {
+  background-color: #e93939;
+  border-color: #283238;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+  border: 2px solid #5bc0de;
+}
+
+.btn-info:hover {
+  background-color: rgb(55, 169, 245);
+  border-color: #283238;
+}
+
+.slider {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: center;
+  vertical-align: middle !important;
 }

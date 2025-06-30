@@ -2,22 +2,30 @@
 
 # Product controller for ceating and manipulating products
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[edit update destroy]
+  before_action :set_product, only: %i[edit update destroy show]
   # to display all products
   def index
     @products = current_user.seller? ? current_user.products : Product.all
-    @products = @products.page params[:page]
+    products = @products.includes(:orders)
+
+    render json: {
+      products: products.as_json(include: :orders),
+      current_user: current_user.as_json
+    }
   end
+
+  def all_products; end
 
   # create new product
   def create
     @product = current_user.products.new(product_params)
+
     if @product.save
-      flash[:notice] = 'Product successfully created!'
-      redirect_to products_url(@product)
+      render json: { success: true, message: 'Product successfully created!',
+      product: @product }, status: :created
     else
-      flash[:alert] = 'Error creating the product.'
-      render partial: 'products/form'
+      render json: { success: false, errors: @product.errors.full_messages },
+      status: :unprocessable_entity
     end
   end
 
@@ -28,24 +36,29 @@ class ProductsController < ApplicationController
   end
 
   # to edit the product details
-  def edit; end
+  def edit
+    render json: { product: @product }
+  end
 
   # to destroy the product
   def destroy
     @product.destroy
-    flash[:notice] = 'Product deleted'
-    redirect_to request.referrer
+    render json: { message: 'Product deleted successfully' }, status: :ok
   end
 
   # to update the product details
   def update
     if @product.update(product_params)
       flash[:notice] = 'Product updated'
-      redirect_to products_url(@product)
+      render json: { message: 'Product edited successfully' }, status: :ok
     else
       flash[:alert] = "Product couldn't be updated"
       render 'edit'
     end
+  end
+
+  def show
+    render json: { product: @product }
   end
 
   private

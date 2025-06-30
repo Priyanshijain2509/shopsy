@@ -10,12 +10,12 @@ class OrdersController < ApplicationController
     @order = @product.orders.build(order_params)
     if @order.save
       send_order_confirmation_email
+      render json: { success: true, order: @order,
+                     message: 'Order successfully placed!' }, status: :created
     else
       flash[:alert] = 'Order could not be placed'
-    end
-    respond_to do |format|
-      format.html { redirect_to request.referrer || root_url }
-      format.js
+      render json: { success: false, errors: @order.errors.full_messages },
+                      status: :unprocessable_entity
     end
   end
 
@@ -24,21 +24,23 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(status: 'Cancelled')
       send_order_cancellation_email
+      render json: { success: true, order: @order,
+                     message: 'Order Cancelled!' }, status: :ok
     else
       flash[:alert] = 'Order cancellation failed'
-    end
-    respond_to do |format|
-      format.html { redirect_to request.referrer || root_url }
-      format.js
+      render json: { success: false, errors: @order.errors.full_messages },
+                      status: :unprocessable_entity
     end
   end
 
   # to display seller dashboard and buyer's order
   def index
     if current_user.role == 'seller'
-      @products = current_user.products.page(params[:page])
+      products = current_user.products.includes(orders: :org_buyer)
+      render json: products, include: { orders: { include: :org_buyer } }
     elsif current_user.role == 'buyer'
-      @orders = current_user.orders.page(params[:page])
+      orders = current_user.orders.includes(:product)
+      render json: orders, include: :product
     end
   end
 
